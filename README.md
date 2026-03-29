@@ -113,7 +113,7 @@ Tests run against a local validator started automatically by Anchor.
 
 ---
 
-## 🛡️ Security Highlights
+## Security Highlights
 
 1. **PDA-signed vaults:** Stake and reward vaults are owned by the Pool PDA; no private key can drain them directly.
 2. **Overflow protection:** All arithmetic uses checked/saturating math with `u128` intermediates.
@@ -124,7 +124,7 @@ Tests run against a local validator started automatically by Anchor.
 
 ---
 
-## 📋 Instructions Reference
+## Instructions Reference
 
 ### User Instructions
 | Instruction | Description |
@@ -164,6 +164,3 @@ After deployment, update the program ID in `Anchor.toml` and `declare_id!()` in 
 
 ---
 
-## 📄 License
-
-MIT
