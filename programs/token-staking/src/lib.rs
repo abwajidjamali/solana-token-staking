@@ -13,8 +13,8 @@ pub mod token_staking {
     /// Initialize the global staking pool (admin only)
     pub fn initialize_pool(
         ctx: Context<InitializePool>,
-        reward_rate: u64, // tokens rewarded per second per staked token (scaled by 1e9)
-        lock_period: i64, // seconds users must wait before unstaking (0 = no lock)
+        reward_rate: u64,
+        lock_period: i64,
     ) -> Result<()> {
         let pool = &mut ctx.accounts.pool;
         pool.admin = ctx.accounts.admin.key();

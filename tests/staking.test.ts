@@ -67,7 +67,7 @@ describe("token-staking", () => {
 
   //  1. Initialize Pool
 
-  it("initializes the staking pool with correct parameters", async () => {
+  it("Initializes the staking pool with correct parameters", async () => {
     await program.methods
       .initializePool(REWARD_RATE, LOCK_PERIOD)
       .accounts({
@@ -94,7 +94,7 @@ describe("token-staking", () => {
 
   //  2. Fund Rewards
 
-  it("funds the reward vault and reflects correct balance", async () => {
+  it("Funds the reward vault and reflects correct balance", async () => {
     const amount = new BN(1_000_000 * 1e6);
     await program.methods
       .fundRewards(amount)
@@ -113,7 +113,7 @@ describe("token-staking", () => {
 
   //  3. Stake
 
-  it("allows a user to stake tokens and updates pool total", async () => {
+  it("Allows a user to stake tokens and updates pool total", async () => {
     const [userStake] = userStakePDA(pool, user.publicKey);
 
     await program.methods
@@ -140,7 +140,7 @@ describe("token-staking", () => {
 
   //  4. Claim Rewards
 
-  it("accrues and pays out rewards based on time staked", async () => {
+  it("Accrues and pays out rewards based on time staked", async () => {
     await new Promise((r) => setTimeout(r, 3000));
 
     const [userStake] = userStakePDA(pool, user.publicKey);
@@ -166,7 +166,7 @@ describe("token-staking", () => {
 
   //  5. Admin Pause / Unpause
 
-  it("admin can pause and unpause the pool", async () => {
+  it("Admin can pause and unpause the pool", async () => {
     await program.methods.setPaused(true).accounts({ admin: admin.publicKey, pool }).rpc();
     let poolData = await program.account.pool.fetch(pool);
     expect(poolData.isPaused).to.be.true;
@@ -178,7 +178,7 @@ describe("token-staking", () => {
 
   //  6. Reject staking when paused
 
-  it("rejects staking when pool is paused", async () => {
+  it("Rejects staking when pool is paused", async () => {
     await program.methods.setPaused(true).accounts({ admin: admin.publicKey, pool }).rpc();
 
     const [userStake] = userStakePDA(pool, user.publicKey);
@@ -206,7 +206,7 @@ describe("token-staking", () => {
 
   //  7. Reject unauthorized admin calls
 
-  it("rejects admin instructions from non-admin wallet", async () => {
+  it("Rejects admin instructions from non-admin wallet", async () => {
     const attacker = Keypair.generate();
     const sig = await provider.connection.requestAirdrop(attacker.publicKey, LAMPORTS_PER_SOL);
     await provider.connection.confirmTransaction(sig, "confirmed");
@@ -225,7 +225,7 @@ describe("token-staking", () => {
 
   // 8. Unstake after lock period
 
-  it("allows full unstake after lock period and zeroes pool total", async () => {
+  it("Allows full unstake after lock period and zeroes pool total", async () => {
     await new Promise((r) => setTimeout(r, 3000));
 
     const [userStake] = userStakePDA(pool, user.publicKey);
