@@ -1,0 +1,29 @@
+# Anchor build artifacts
+target/
+.anchor/
+
+# Node modules
+node_modules/
+
+# Solana keypairs
+**/*.json
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Rust
+Cargo.lock
